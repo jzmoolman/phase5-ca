@@ -21,7 +21,7 @@
  *  \file   ca_pipe_control.codal
  *  \author Codasip
  *  \date   09.02.2022
- *  \brief  cycle accurate model
+ *  \brief  Pipe control - cycle accurate model
  */
 
 #include "debug.hcodal"
@@ -34,4 +34,3 @@ event pipeline_control : pipeline(pipe.IFID)
 
     };
 };
-
