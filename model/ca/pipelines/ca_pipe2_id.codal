@@ -171,8 +171,6 @@ event id_output : pipeline(pipe.IDEX)
         r_idex_src2_sl = ;
 
         // decoder control-signals
-        r_idex_branch_inst = s_id_branch_inst;
-        r_idex_jump_inst = s_id_jump_inst;
         r_idex_mem_ops = s_id_mem_ops;
         r_idex_memread = s_id_memread;
         r_idex_halt = s_id_halt;
