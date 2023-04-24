@@ -21,7 +21,7 @@
  *  \file   ca_pipe4_me.codal
  *  \author Codasip
  *  \date   09.02.2022
- *  \brief  cycle accurate model
+ *  \brief  Memory stage - cycle accurate model
  */
 
 #include "ca_defines.hcodal"
