@@ -21,7 +21,7 @@
  *  \file   ca_pipe3_ex.codal
  *  \author Codasip
  *  \date   09.02.2022
- *  \brief  cycle accurate model
+ *  \brief  Execute stage - cycle accurate model
  */
 
 #include "ca_defines.hcodal"
@@ -94,8 +94,6 @@ event ex_output : pipeline(pipe.EXMEM)
 
 
         // Passing Decoder control-signals to the EX stage
-        r_exmem_branch_inst = r_idex_branch_inst;
-        r_exmem_jump_inst = r_idex_jump_inst;
         r_exmem_mem_ops = r_idex_mem_ops;
         r_exmem_memread = r_idex_memread;
     };
