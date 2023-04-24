@@ -21,7 +21,7 @@
  *  \file   ca_pipe5_wb.codal
  *  \author Codasip
  *  \date   09.02.2022
- *  \brief  cycle accurate model
+ *  \brief  Write-back - cycle accurate model
  */
 
 // -------------------------------------------------------------------------------------------------
@@ -35,10 +35,5 @@ event wb : pipeline(pipe.MEMWB)
         // Set local stall.
         s_wb_stall = 0;
         
-        // -------------------------------------------------------------------------------------------------
-        // Write to destination if not x0 or write is enabled
-        // -------------------------------------------------------------------------------------------------
-
     };
 };
-
