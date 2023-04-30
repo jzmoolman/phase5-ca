@@ -33,9 +33,17 @@
 // Decoder
 // -------------------------------------------------------------------------------------------------
 
-set inst_decode = i_hw_halt,
-        i_hw_rtype_alu,
-        i_hw_itype_alu;
+set inst_decode = 
+                  i_hw_rtype_alu,
+                  i_hw_itype_alu,
+                //   i_hw_itype_special,
+                //   i_hw_btype_branches,
+                //   i_hw_utype_ops,
+                //   i_hw_jtype_jlink,
+                //   i_hw_itype_jlreg,
+                //   i_hw_itype_loads,
+                //   i_hw_stype_store,
+                  i_hw_halt;
 
 
 // -------------------------------------------------------------------------------------------------
@@ -174,7 +182,7 @@ element i_hw_rtype_alu
 };
 
 // -------------------------------------------------------------------------------------------------
-// Rtype Immediate shif instructions
+// R-type immediate shift instructions
 // -------------------------------------------------------------------------------------------------
 
 //element i_hw_itype_special
@@ -259,7 +267,7 @@ element i_hw_rtype_alu
 //};
 
 // -------------------------------------------------------------------------------------------------
-// LIU and AUIPC and LUI instructions
+// LIU and AUIPC instructions
 // -------------------------------------------------------------------------------------------------
 
 //element i_hw_utype_ops
@@ -428,7 +436,7 @@ element i_hw_rtype_alu
 
 
 // -------------------------------------------------------------------------------------------------
-// store instructions
+// Store instructions
 // -------------------------------------------------------------------------------------------------
 
 //element i_hw_stype_store
