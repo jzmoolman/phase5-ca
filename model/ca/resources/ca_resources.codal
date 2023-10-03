@@ -50,19 +50,16 @@ signal bit[ADDR_W] s_if_nextpc;
 // Program Counter
 register bit[ADDR_W] r_id_pc            { pipeline = pipe.ID; };
 // Instruction
-signal bit[INSTR_W] s_id_instr;                 
-signal bit[OPC_W] s_id_opc;                        //opcode + func3 + func7
-
-//Halt Control Signal
-signal bit[HALT_W] s_id_halt;                   // signal to indicate when we need to halt the execution
+signal bit[INSTR_W] s_id_instr;
 
 // ALU Operation Control
 signal bit[ALUOP_W] s_id_aluop;
 
-
 //Control Signals
 signal bit[REGWRITE_W] s_id_regwrite;
 signal bit[SRC2_W] s_id_alusrc2;
+signal bit[HALT_W] s_id_halt;
+signal bit[OPC_W] s_id_opc;
 // -------------------------------------------------------------------------------------------------
 // Execute stage
 // -------------------------------------------------------------------------------------------------
@@ -70,7 +67,7 @@ signal bit[SRC2_W] s_id_alusrc2;
 // Pipelined Program Counter + Instruction
 register bit[ADDR_W] r_ex_pc            		{ pipeline = pipe.EX; };
 register bit[INSTR_W] r_ex_instr                { pipeline = pipe.EX; };
-
+register bit[HALT_W] r_ex_halt            		{ pipeline = pipe.EX; };
 
 // ALU Operation Control
 register bit[ALUOP_W] r_ex_aluop        		{ pipeline = pipe.EX; };
@@ -105,6 +102,8 @@ signal   bit[1] s_me_stall;
 signal   bit[1] s_me_clear;
 signal   bit[1] s_wb_stall;
 signal   bit[1] s_wb_clear;
+
+
 
 
 // -------------------------------------------------------------------------------------------------

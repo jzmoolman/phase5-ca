@@ -41,7 +41,7 @@ event ex : pipeline(pipe.EX)
         if (r_ex_halt == HALT_HALT)
         {
             codasip_break();
-            codasip_info(INFO_GENERAL, "Halt: return value = %d\n", rf_xpr[GPR_RETVAL] & 0xFF);
+            codasip_info(INFO_GENERAL, "Halt Instructions Indicated");
         }
 
         // Timing
