@@ -34,22 +34,12 @@
 // Signal size
 // -------------------------------------------------------------------------------------------------
 
-#define ALUOP_W                 bitsizeof(enum aluop)
-#define ALU_SRC1_SEL_W          bitsizeof(enum alu_src1_sel)
-#define ALU_SRC2_SEL_W          bitsizeof(enum alu_src2_sel)
-
-#define IMM_GEN_SEL_W           bitsizeof(enum imm_gen_mux)
-
-#define MEM_OPCODE_W            bitsizeof(enum mem_ops)
+#define ALUOP_W        bitsizeof(enum aluop)
 
 // -------------------------------------------------------------------------------------------------
-// Defines
+// Enumerations
 // -------------------------------------------------------------------------------------------------
-#define DONT_CARE               0
-#define NOP_INSTRUCTION         0x00000013          // NOP equates to OPC_ADDI, addi x0, x0, 0
 
-#define IMM_12BIT               true
-#define IMM_20BIT               false
 // -------------------------------------------------------------------------------------------------
 // IF stage
 // -------------------------------------------------------------------------------------------------
@@ -57,15 +47,6 @@
 // -------------------------------------------------------------------------------------------------
 // ID stage
 // -------------------------------------------------------------------------------------------------
-enum imm_gen_mux        // Select lines for generating the proper immediate to pass to the execute stage
-{
-    IMM_SEL_NONE,
-    IMM_SEL_ITYPE,
-    IMM_SEL_STYPE,
-    IMM_SEL_BTYPE,
-    IMM_SEL_UTYPE,
-    IMM_SEL_JTYPE
-};
 
 // -------------------------------------------------------------------------------------------------
 // EX stage
@@ -74,27 +55,8 @@ enum imm_gen_mux        // Select lines for generating the proper immediate to p
 // ALU function codes
 enum aluop
 {
-    ALU_NOP = 0,        // In enums, you can specify a particular value to an element.  All other
-    ALU_ADD,            // elements will have a value incremented by 1 unless assigned a specific value
-};
-
-// ALU SRC1 operand mux select lines
-enum alu_src1_sel
-{
-    ALU_SRC1_SEL_RF,    // Set output to the register file
-};
-
-// ALU SRC2 operand mux select lines
-enum alu_src2_sel
-{
-    ALU_SRC2_SEL_RF,    // Set output to the register file
-    ALU_SRC2_SEL_IMM,   // Set output to the immediate input value
-};
-
-// MEMORY opcodes
-enum mem_ops
-{
-    MEM_NOP             // Not a memory operation
+    ALU_NOP,
+    ALU_ADD,
 };
 
 // -------------------------------------------------------------------------------------------------
@@ -109,6 +71,8 @@ enum mem_ops
 // Auxiliary definitions
 // -------------------------------------------------------------------------------------------------
 
-
+#define DONT_CARE           0
+#define NOP_INSTRUCTION     OPC_ADDI
 
 #endif // CA_DEFINES_HCODAL
+
