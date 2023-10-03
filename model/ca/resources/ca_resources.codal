@@ -49,7 +49,7 @@ signal bit[ADDR_W] s_if_nextpc;
 
 // Program Counter
 register bit[ADDR_W] r_id_pc            { pipeline = pipe.ID; };
-// Instruction
+// Instruction -- Machine Code
 signal bit[INSTR_W] s_id_instr;
 
 // ALU Operation Control
@@ -59,6 +59,9 @@ signal bit[ALUOP_W] s_id_aluop;
 signal bit[REGWRITE_W] s_id_regwrite;
 signal bit[SRC2_W] s_id_alusrc2;
 signal bit[HALT_W] s_id_halt;
+
+
+//Instruction opcode + func3 + func7
 signal bit[OPC_W] s_id_opc;
 // -------------------------------------------------------------------------------------------------
 // Execute stage
