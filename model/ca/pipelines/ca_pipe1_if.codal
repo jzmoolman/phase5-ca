@@ -24,48 +24,40 @@
  *  \brief  cycle accurate model
  */
 
+// -------------------------------------------------------------------------------------------------
+// Fetch stage
+// -------------------------------------------------------------------------------------------------
+
 #include "config.hcodal"
 #include "ca_defines.hcodal"
 
-event fe : pipeline(pipe.IFID)
+event if : pipeline(pipe.IF)
 {
     use if_output;
 
     semantics
     {
-        uint2 if_status;
-        uint4 cache_hprot;
-
         // -----------------------------------------------------------------------------------------
         // Pipeline control
         // -----------------------------------------------------------------------------------------
 
-        // If branch, the next PC is not the previous pc + 4, but the calculate branch or jump address
-        if (s_me_take_branch) s_if_nextpc = r_exmem_target_address;
-        else s_if_nextpc = r_pc;
+        // Set all the clear signals.
+        s_id_clear = 0;
+        s_ex_clear = 0;
+        s_wb_clear = 0;
+        s_me_clear = 0;
 
-        // Instruction request
-        cache_hprot = pma_hprot(s_if_nextpc[31 .. 2] :: (uint2)0, 0u);
-        if_fetch.transport(CP_PHS_ADDRESS, CP_AHB_NONSEQ, CP_AHB_READ, s_if_nextpc[31 .. 2] :: (uint2) 0, CP_AHB_SIZE_32, cache_hprot, CP_AHB_UNLOCK);
+        // Set the local stall signal.
+        s_if_stall = 0;
 
-        // Update the pipeline registers between the Instruction Fetch (IF) and Instruction Decode (ID) stages
+        // Update the registers
         if_output();
     };
 };
 
-event if_output : pipeline(pipe.IFID)
+event if_output : pipeline(pipe.IF)
 {
     semantics
     {
-        // -----------------------------------------------------------------------------------------
-        // Pipeline registers
-        // -----------------------------------------------------------------------------------------
-        
-        r_ifid_pc = s_if_nextpc;
-
-        if (!s_me_mem_busy) r_pc = s_if_nextpc + INSTR_SIZE;
-        else r_pc = s_if_nextpc;
-
-        r_id_icache_stall = s_id_icache_stall;
     };
 };
