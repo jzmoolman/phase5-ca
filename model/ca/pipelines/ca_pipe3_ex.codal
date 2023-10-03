@@ -30,72 +30,30 @@
 // -------------------------------------------------------------------------------------------------
 // Execute Stage
 // -------------------------------------------------------------------------------------------------
-event ex : pipeline(pipe.EXMEM)
+event ex : pipeline(pipe.EX)
 {
-    use alu_operate;
     use ex_output;
 
     semantics
     {
 
-        // ----------------------------------------------------------------------------------------------
-        // Source 1 Multiplexor
-        // ----------------------------------------------------------------------------------------------
-
-        // ----------------------------------------------------------------------------------------------
-        // Source 2 Multiplexor
-        // ----------------------------------------------------------------------------------------------
-
-        // ----------------------------------------------------------------------------------------------
-        // halt instruction
-        // ----------------------------------------------------------------------------------------------
-        if (r_idex_halt == true)
+        // HALT instruction detection
+        if (r_ex_halt == HALT_HALT)
         {
-            codasip_info(INFO_GENERAL, "Halt instruction indicated");
-//            codasip_store_exit_code(rf_xpr[GPR_RETVAL] & 0xFF);
-            #pragma simulator
-            {
-                codasip_halt();
-            }
-
+            codasip_break();
+            codasip_info(INFO_GENERAL, "Halt: return value = %d\n", rf_xpr[GPR_RETVAL] & 0xFF);
+            codasip_store_exit_code(rf_xpr[GPR_RETVAL] & 0xFF);
         }
 
-        // ----------------------------------------------------------------------------------------------
-        // ALU activation
-        // ----------------------------------------------------------------------------------------------
-        alu_operate();
-
-        // Update the pipeline registers between the Execute (EX) and MEMORY (MEM) stages
+        // Timing
         ex_output();
     };
 };
 
-event alu_operate : pipeline(pipe.EXMEM)
+event ex_output : pipeline(pipe.EX)
 {
     semantics
     {
-        // ----------------------------------------------------------------------------------------------
-        // ALU
-        // ----------------------------------------------------------------------------------------------
 
     };
 };
-
-
-event ex_output : pipeline(pipe.EXMEM)
-{
-    semantics
-    {
-        // -----------------------------------------------------------------------------------------
-        // Pipeline registers
-        // -----------------------------------------------------------------------------------------
-
-
-
-
-        // Passing Decoder control-signals to the EX stage
-        r_exmem_mem_ops = r_idex_mem_ops;
-        r_exmem_memread = r_idex_memread;
-    };
-};
-
