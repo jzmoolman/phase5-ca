@@ -28,12 +28,14 @@
 // Write-Back Stage
 // -------------------------------------------------------------------------------------------------
 
-event wb : pipeline(pipe.MEMWB)
+event wb : pipeline(pipe.WB)
 {
     semantics
     {
+
+
         // Set local stall.
         s_wb_stall = 0;
-        
+
     };
 };
