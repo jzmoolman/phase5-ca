@@ -34,9 +34,10 @@
 // Decoder
 // -------------------------------------------------------------------------------------------------
 
-set dec = i_hw_halt,
-                i_hw_alu,
-                i_hw_alu_i;
+set dec = i_hw_halt
+                ,i_hw_alu
+                // ,i_hw_alu_i
+                ;
 
 // -------------------------------------------------------------------------------------------------
 // Halt instruction
@@ -48,7 +49,7 @@ element i_hw_halt
 {
     use opc_halt as opc;
 
-    assembler { opc };
+    assembly { opc };
     binary { opc };
 
     semantics
@@ -73,9 +74,9 @@ element i_hw_halt
 
 element i_hw_alu
 {
-    use opc_alu as opc;
+    use opc_rtype_alu as opc;
 
-    assembler { opc };
+    assembly { opc };
     binary { opc };
 
     semantics
@@ -85,8 +86,8 @@ element i_hw_alu
 
         switch (opc)
         {
-            case OPC_ADD:
-                s_id_aluop = ALU_ADD;
+            case RTYPE_ADD:
+                s_id_aluop = RTYPE_ADD;
                 break;
 
             default:

@@ -30,6 +30,8 @@
 
 #define BOOLEAN_BIT     1    // Boolean control bit of width 1-bit
 #define TWO_BIT         2       // Two bit wide control signal
+
+
 pipeline pipe
 {
     IF, ID, EX, ME, WB
@@ -48,11 +50,19 @@ signal bit[ADDR_W] s_if_nextpc;
 // Program Counter
 register bit[ADDR_W] r_id_pc            { pipeline = pipe.ID; };
 // Instruction
-signal bit[INSTR_W] s_id_instr;
+signal bit[INSTR_W] s_id_instr;                 
+signal bit[OPC_W] s_id_opc;                        //opcode + func3 + func7
+
+//Halt Control Signal
+signal bit[HALT_W] s_id_halt;                   // signal to indicate when we need to halt the execution
 
 // ALU Operation Control
 signal bit[ALUOP_W] s_id_aluop;
 
+
+//Control Signals
+signal bit[REGWRITE_W] s_id_regwrite;
+signal bit[SRC2_W] s_id_alusrc2;
 // -------------------------------------------------------------------------------------------------
 // Execute stage
 // -------------------------------------------------------------------------------------------------

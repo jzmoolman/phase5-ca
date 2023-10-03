@@ -33,7 +33,7 @@
 
 event id : pipeline(pipe.ID)
 {
-    use dec;
+    use inst_decode;
     use id_output;
 
     semantics
@@ -43,7 +43,7 @@ event id : pipeline(pipe.ID)
         s_id_stall = 0;
 
         // Decoder activation
-        dec(s_id_opc);
+        inst_decode(s_id_opc);
 
         // Update the registers
         id_output();

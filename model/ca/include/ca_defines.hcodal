@@ -35,7 +35,10 @@
 // -------------------------------------------------------------------------------------------------
 
 #define ALUOP_W        bitsizeof(enum aluop)
-
+#define REGWRITE_W     bitsizeof(enum regwrite)
+#define SRC2_W         bitsizeof(enum src2)
+#define HALT_W         bitsizeof(enum halt)
+#define OPC_W          7 + 3 + 7
 // -------------------------------------------------------------------------------------------------
 // Enumerations
 // -------------------------------------------------------------------------------------------------
@@ -59,6 +62,25 @@ enum aluop
     ALU_ADD,
 };
 
+enum regwrite
+{
+    WE_FALSE,
+    WE_TRUE,
+};
+
+enum src2
+{
+    ALU2_REG,
+    ALU2_IMM,
+};
+
+enum halt
+{
+    HALT_NOHALT,
+    HALT_HALT,
+};
+
+
 // -------------------------------------------------------------------------------------------------
 // ME stage
 // -------------------------------------------------------------------------------------------------
@@ -73,6 +95,5 @@ enum aluop
 
 #define DONT_CARE           0
 #define NOP_INSTRUCTION     OPC_ADDI
-
 #endif // CA_DEFINES_HCODAL
 

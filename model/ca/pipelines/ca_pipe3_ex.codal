@@ -42,7 +42,6 @@ event ex : pipeline(pipe.EX)
         {
             codasip_break();
             codasip_info(INFO_GENERAL, "Halt: return value = %d\n", rf_xpr[GPR_RETVAL] & 0xFF);
-            codasip_store_exit_code(rf_xpr[GPR_RETVAL] & 0xFF);
         }
 
         // Timing

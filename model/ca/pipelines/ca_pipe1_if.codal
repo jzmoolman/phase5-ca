@@ -31,7 +31,7 @@
 #include "config.hcodal"
 #include "ca_defines.hcodal"
 
-event if : pipeline(pipe.IF)
+event fe : pipeline(pipe.IF)
 {
     use if_output;
 
