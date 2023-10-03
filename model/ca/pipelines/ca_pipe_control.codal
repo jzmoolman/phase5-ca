@@ -27,7 +27,7 @@
 #include "debug.hcodal"
 #include "ca_defines.hcodal"
 
-event pipeline_control : pipeline(pipe.IFID)
+event pipeline_control : pipeline(pipe.IF)
 {
     semantics
     {
