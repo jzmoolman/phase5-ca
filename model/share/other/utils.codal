@@ -32,22 +32,3 @@
  */
 
 #include "config.hcodal"
-
-/**
- *  \brief  Computes value of the HPROT parameter for interface access.
- *          The upper part of the address range is non-cacheable, non-bufferable, the lower one is cacheable.
- *          HPROT[3] and HPROT[2] are based on the MSB bit of the address.
- *          HPROT[1] = always privilegded access
- *          HRPOT[0] = opcode/data
- *  \param  address source address, the MSB bit is
- *  \param  hprot0 value of the HPROT LSB bit (Data access vs. Opcode fetch)
- */
-
-#define ADDR_TYPE   uint##ADDR_W
-
-inline uint4 pma_hprot(const uint32 address, const uint1 hprot0)
-{
-    uint1 is_cacheable_bufferable;
-    is_cacheable_bufferable = ~address[ADDR_W-1 .. ADDR_W-1];
-    return is_cacheable_bufferable :: is_cacheable_bufferable :: (uint1)(0b1) :: hprot0;
-}
