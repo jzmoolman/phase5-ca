@@ -33,7 +33,7 @@
 // Instruction access memory interface
 
 #ifndef OPTION_CACHES_ENABLED
-interface if_fetch          // if refers to Interface element and fetch refers to instruction memory interface
+interface if_code         // if refers to Interface element and fetch refers to instruction memory interface
 {
     // The bit specifiers has 3 values:
     //     - address buswidth
