@@ -34,7 +34,7 @@ memory unified_memory {
     latencies = { {READ_1ST_LATENCY, READ_SUB_LATENCY}, {WRITE_1ST_LATENCY, READ_SUB_LATENCY}};
 
     // memory interface for instruction
-    interface if_fetch {
+    interface if_code {
         // address, word size, LAU
         bits = {ADDR_W, WORD_W, LAU_W};
         endianness = ENDIAN;
