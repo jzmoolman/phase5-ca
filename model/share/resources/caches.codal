@@ -50,7 +50,7 @@ cache idcache
                 data = { WORD_W };
             };
         };
-        interface if_fetch_master
+        interface if_code_master
         {
             bits = { ADDR_W, WORD_W, LAU_W };
             type = AHB3_LITE:MASTER;
@@ -92,7 +92,7 @@ cache idcache
         };
     };
 };
-connect unified_memory.if_fetch => idcache.if_fetch_master;
+connect unified_memory.if_code => idcache.if_code_master;
 connect unified_memory.if_data => idcache.if_ldst_master;
 #endif
 
