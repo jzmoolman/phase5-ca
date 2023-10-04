@@ -75,12 +75,7 @@ uint32 load(const uint32 opc, const uint32 address)
     }
 
     // Data Interface read
-#ifdef OPTION_CACHES_ENABLED
-    result = idcache.if_dcache.read(address, byte_count, cache_resp, pma_hprot(address, CP_AHB_DATA_ACCESS), CP_AHB_UNLOCK);
-    dprintf("load [%08x] ", address);
-#else
-    result = ldst.read(address, byte_count, cache_resp, pma_hprot(address, CP_AHB_DATA_ACCESS), CP_AHB_UNLOCK);
-#endif
+    result = ldst.read(address, byte_count, cache_resp, 0, CP_AHB_UNLOCK);
     switch (opc) {
         case ITYPE_LB:
             return (int32)(int8) result;        // sign extend a signed byte load operation
@@ -123,13 +118,10 @@ void store(const uint32 opc, const uint32 address, const uint32 result)
     }
 
     // Data interface write
-#ifdef OPTION_CACHES_ENABLED
-    idcache.if_dcache.write(result, address, byte_count, cache_resp, pma_hprot(address, CP_AHB_DATA_ACCESS), CP_AHB_UNLOCK);
+
+    ldst.write(result, address, byte_count, cache_resp, 0, CP_AHB_UNLOCK);
     dprintf("st %08x -> [%08x] ", result, address);
-#else
-    ldst.write(result, address, byte_count, cache_resp, pma_hprot(address, CP_AHB_DATA_ACCESS), CP_AHB_UNLOCK);
-    dprintf("st %08x -> [%08x] ", result, address);
-#endif
+
 }
 
 // To enable conditional branches and uniconditional jumps, there must be a function to obtain the current Program Counter (pc)
