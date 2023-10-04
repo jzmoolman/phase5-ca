@@ -60,7 +60,7 @@ arch register_file bit[WORD_W] rf_xpr
 
 address_space as_all
 {
-    // The same as the interfaces defined in the interface module, if_fetch and if_ldst memories
+    // The same as the interfaces defined in the interface module, if_code and if_ldst memories
     bits = {ADDR_W, WORD_W, LAU_W};
 
     // List of all interfaces that are defined in this address_space element
@@ -69,7 +69,7 @@ address_space as_all
         PROGRAM : idcache.if_icache,      // Associate instruction cache interface with Instruction/Program accesses
         DATA : idcache.if_dcache          // Associate data cache interface with Data accesses
 #else
-        PROGRAM : if_fetch,         // Associate instruction cache interface with Instruction/Program accesses
+        PROGRAM : if_code,         // Associate instruction cache interface with Instruction/Program accesses
         DATA :    ldst              // Associate data cache interface with Data accesses
 #endif
     };
