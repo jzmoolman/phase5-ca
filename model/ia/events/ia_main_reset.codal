@@ -66,7 +66,7 @@ event main
 #ifdef OPTION_CACHES_ENABLED
         r_instruction_buffer = idcache.if_icache.read(r_pc, INSTR_W/LAU_W, cache_resp, pma_hprot(r_pc, 0u), CP_AHB_UNLOCK);     // Obtain the instruction pointed by the Program Counter (PC)
 #else
-        r_instruction_buffer = if_fetch.read(r_pc, INSTR_W/LAU_W, cache_resp, pma_hprot(r_pc, 0u), CP_AHB_UNLOCK);              // Obtain the instruction pointed by the Program Counter (PC)
+        r_instruction_buffer = if_code.read(r_pc, INSTR_W/LAU_W, cache_resp, pma_hprot(r_pc, 0u), CP_AHB_UNLOCK);              // Obtain the instruction pointed by the Program Counter (PC)
 #endif
         // Print the fetched instruction
         dprintf("\n%d:\t%08x | ",codasip_get_clock_cycle(), r_pc);
