@@ -93,6 +93,6 @@ enum halt
 // -------------------------------------------------------------------------------------------------
 
 #define DONT_CARE           0
-#define NOP_INSTRUCTION     OPC_ADDI
+#define NOP_INSTRUCTION     ITYPE_ADDI
 #endif // CA_DEFINES_HCODAL
 
