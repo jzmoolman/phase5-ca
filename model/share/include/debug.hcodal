@@ -42,6 +42,7 @@ enum info_levels
     INFO_MEMDAT     = 9,
     INFO_BR         = 11,
     ALU_ERROR       = 12,
+    SRC2_ERROR      = 13,
     INFO_LEVEL      = 22,
     TRACE_LEVEL     = 23,
     WARNING_LEVEL   = 24,
